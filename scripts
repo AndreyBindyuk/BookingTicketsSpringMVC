@@ -1,0 +1,28 @@
+CREATE TABLE TICKETS (seat int(11) NOT NULL,
+                      hallname VARCHAR2(100) NOT NULL,
+                      price int(11) NOT NULL,
+                      filmtitle VARCHAR2(100) NOT NULL,
+                      isbooked BOOLEAN,
+                      PRIMARY KEY (seat)
+);
+
+INSERT INTO TICKETS (seat, hallname, price, filmtitle, isbooked) VALUES (1,'red',1000,'Harry Potter and the Philosophers Stone',false);
+INSERT INTO TICKETS (seat, hallname, price, filmtitle, isbooked) VALUES (2,'red',1000,'Harry Potter and the Philosophers Stone',false);
+INSERT INTO TICKETS (seat, hallname, price, filmtitle, isbooked) VALUES (3,'blue',1000,'Harry Potter and the Chamber of Secrets',false);
+INSERT INTO TICKETS (seat, hallname, price, filmtitle, isbooked) VALUES (4,'blue',1000,'Harry Potter and the Chamber of Secrets',false);
+INSERT INTO TICKETS (seat, hallname, price, filmtitle, isbooked) VALUES (5,'blue',1000,'Harry Potter and the Chamber of Secrets',false);
+
+CREATE TABLE FILMS (title VARCHAR2(100) NOT NULL,
+                      duration int(11) NOT NULL,
+                      filmrating int(11) NOT NULL,
+                      description VARCHAR2(100) NOT NULL,
+                      year int(11) NOT NULL,
+                      country VARCHAR2(100) NOT NULL,
+                      restriction int(11) NOT NULL,
+                      actors VARCHAR2(100) NOT NULL,
+                      genres VARCHAR2(100) NOT NULL,
+                      PRIMARY KEY (title)
+);
+
+INSERT INTO FILMS (title, duration, filmrating, description, year, country, restriction, actors, genres) VALUES ('Harry Potter and the Philosophers Stone',140,5,'child film','2001','United Kingdom',12,'Daniel Radcliffe, Rupert Grint, Emma Watson','Fantasy');
+INSERT INTO FILMS (title, duration, filmrating, description, year, country, restriction, actors, genres) VALUES ('Harry Potter and the Chamber of Secrets',150,5,'child film','2002','United Kingdom',12,'Daniel Radcliffe, Rupert Grint, Emma Watson','Fantasy');

@@ -1,25 +1,24 @@
 package entity;
 
 import java.util.List;
-import java.util.Set;
 
 public class Film {
     private String title;
     private int duration;
     private double filmRating;
     private String description;
-    private String year;
+    private int year;
     private String country;
     private int restriction;
-    private Set<Actor> actors;
-    private Set<Genre> genres;
+    private String actors;
+    private String genres;
     private String hallName;
     private List<Ticket> tickets;
 
     public Film() {
     }
 
-    public Film(String title, int duration, double filmRating, String description, String year, String country, int restriction, Set<Actor> actors, Set<Genre> genres) {
+    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres) {
         this.title = title;
         this.duration = duration;
         this.filmRating = filmRating;
@@ -31,7 +30,7 @@ public class Film {
         this.genres = genres;
     }
 
-    public Film(String title, int duration, double filmRating, String description, String year, String country, int restriction, Set<Actor> actors, Set<Genre> genres, String hallName, List<Ticket> tickets) {
+    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres, String hallName, List<Ticket> tickets) {
         this.title = title;
         this.duration = duration;
         this.filmRating = filmRating;
@@ -77,11 +76,11 @@ public class Film {
         this.description = description;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -101,19 +100,19 @@ public class Film {
         this.restriction = restriction;
     }
 
-    public Set<Actor> getActors() {
+    public String getActors() {
         return actors;
     }
 
-    public void setActors(Set<Actor> actors) {
+    public void setActors(String actors) {
         this.actors = actors;
     }
 
-    public Set<Genre> getGenres() {
+    public String getGenres() {
         return genres;
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(String genres) {
         this.genres = genres;
     }
 

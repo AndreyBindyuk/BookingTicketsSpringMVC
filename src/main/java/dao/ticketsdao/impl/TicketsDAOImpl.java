@@ -1,17 +1,20 @@
 package dao.ticketsdao.impl;
 
-import dao.filmdao.FilmDAO;
-import dao.filmdao.impl.FilmDAOImpl;
 import dao.ticketsdao.TicketsDAO;
-import entity.Hall;
 import entity.Ticket;
 import exception.TicketsException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
 import java.util.*;
 
 public class TicketsDAOImpl implements TicketsDAO {
-    private static FilmDAO filmDAO = new FilmDAOImpl();
     private static final Map<Integer, Ticket> ticketsMap = new HashMap<Integer, Ticket>();
+    private JdbcTemplate jdbcTemplate;
+
+    public TicketsDAOImpl(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     static {
         initMap();
@@ -55,7 +58,7 @@ public class TicketsDAOImpl implements TicketsDAO {
     @Override
     public boolean ticketsCancellations(int seatNumber) throws TicketsException {
         Ticket ticket = ticketsMap.get(seatNumber);
-        if(ticket == null){
+        if (ticket == null) {
             throw new TicketsException("seat number is incorrect");
         }
         ticket.setBooked(false);
