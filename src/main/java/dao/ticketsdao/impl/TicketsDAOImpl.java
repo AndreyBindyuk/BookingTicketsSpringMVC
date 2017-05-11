@@ -2,66 +2,48 @@ package dao.ticketsdao.impl;
 
 import dao.ticketsdao.TicketsDAO;
 import entity.Ticket;
-import exception.TicketsException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class TicketsDAOImpl implements TicketsDAO {
-    private static final Map<Integer, Ticket> ticketsMap = new HashMap<Integer, Ticket>();
     private JdbcTemplate jdbcTemplate;
 
     public TicketsDAOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    static {
-        initMap();
-    }
-
-    private static void initMap() {
-        Ticket ticket = new Ticket("red", 1, 1000, "Harry Potter and the Philosopher's Stone", false);
-        Ticket ticket1 = new Ticket("red", 2, 1000, "Harry Potter and the Philosopher's Stone", false);
-        Ticket ticket2 = new Ticket("blue", 3, 1000, "Harry Potter and the Chamber of Secrets", false);
-        Ticket ticket3 = new Ticket("blue", 4, 1000, "Harry Potter and the Chamber of Secrets", false);
-        Ticket ticket4 = new Ticket("blue", 5, 1000, "Harry Potter and the Chamber of Secrets", false);
-        ticketsMap.put(ticket.getSeat(), ticket);
-        ticketsMap.put(ticket1.getSeat(), ticket1);
-        ticketsMap.put(ticket2.getSeat(), ticket2);
-        ticketsMap.put(ticket3.getSeat(), ticket3);
-        ticketsMap.put(ticket4.getSeat(), ticket4);
-    }
-
     @Override
     public List<Ticket> getFreeSeatsByFilmId(String filmTitle) {
-        List<Ticket> returnTicketsList = new ArrayList<Ticket>();
-        Collection<Ticket> tickets = ticketsMap.values();
-        for (Ticket ticket : tickets) {
-            if (ticket.getFilmTitle().equals(filmTitle) && !ticket.isBooked()) {
-                returnTicketsList.add(ticket);
+        String sql = "SELECT * FROM TICKETS WHERE filmtitle=" + filmTitle;
+        List<Ticket> tickets = jdbcTemplate.query(sql, new RowMapper<Ticket>() {
+            @Override
+            public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+                Ticket ticket = new Ticket();
+                ticket.setSeat(resultSet.getInt("seat"));
+                ticket.setHallName(resultSet.getString("hallname"));
+                ticket.setPrice(resultSet.getInt("price"));
+                ticket.setFilmTitle(resultSet.getString("filmtitle"));
+                ticket.setBooked(resultSet.getBoolean("isbooked"));
+                return ticket;
             }
-        }
-        return returnTicketsList;
+        });
+        return tickets;
     }
 
     @Override
-    public boolean bookingTickets(int seatNumber) throws TicketsException {
-        Ticket ticket = ticketsMap.get(seatNumber);
-        if (ticket == null) {
-            throw new TicketsException("seat number is incorrect");
-        }
-        ticket.setBooked(true);
-        return true;
+    public int bookingTickets(int seatNumber) {
+        String sql = "UPDATE TICKETS SET isbooked=true WHERE seat=" + seatNumber;
+        return jdbcTemplate.update(sql);
     }
 
     @Override
-    public boolean ticketsCancellations(int seatNumber) throws TicketsException {
-        Ticket ticket = ticketsMap.get(seatNumber);
-        if (ticket == null) {
-            throw new TicketsException("seat number is incorrect");
-        }
-        ticket.setBooked(false);
-        return true;
+    public int ticketsCancellations(int seatNumber) {
+        String sql = "UPDATE TICKETS SET isbooked=false WHERE seat=" + seatNumber;
+        return jdbcTemplate.update(sql);
     }
 }

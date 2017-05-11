@@ -10,13 +10,6 @@ public class Ticket {
     public Ticket() {
     }
 
-//    public Ticket(String hallName, int seat, int price, String filmTitle) {
-//        this.hallName = hallName;
-//        this.seat = seat;
-//        this.price = price;
-//        this.filmTitle = filmTitle;
-//    }
-
     public Ticket(String hallName, int seat, int price, String filmTitle, boolean isBooked) {
         this.hallName = hallName;
         this.seat = seat;

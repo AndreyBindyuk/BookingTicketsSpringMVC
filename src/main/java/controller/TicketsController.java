@@ -2,6 +2,7 @@ package controller;
 
 import entity.Ticket;
 import exception.TicketsException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/tickets")
 public class TicketsController {
-    TicketsService ticketsService = new TicketsServiceImpl();
+
+    @Autowired
+    private TicketsService ticketsService;
 
     @RequestMapping(value = "/freeTickets/", method = RequestMethod.GET)
     public List<Ticket> getFreeSeatsByFilmId(@RequestParam(value = "filmTitle") String filmTitle) throws TicketsException {
@@ -22,12 +25,12 @@ public class TicketsController {
     }
 
     @RequestMapping(value = "/bookingTickets/", method = RequestMethod.POST)
-    public boolean bookingTickets(@RequestParam("seatNumber") int seatNumber) throws TicketsException {
+    public String bookingTickets(@RequestParam("seatNumber") int seatNumber) throws TicketsException {
         return ticketsService.bookingTickets(seatNumber);
     }
 
     @RequestMapping(value = "/ticketsCancellations/", method = RequestMethod.POST)
-    public boolean ticketsCancellations(@RequestParam("seatNumber") int seatNumber) throws TicketsException {
+    public String ticketsCancellations(@RequestParam("seatNumber") int seatNumber) throws TicketsException {
         return ticketsService.ticketsCancellations(seatNumber);
     }
 }

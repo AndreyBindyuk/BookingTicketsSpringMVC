@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import services.filmservice.FilmService;
 import services.filmservice.impl.FilmServiceImpl;
+import services.ticketsservice.TicketsService;
+import services.ticketsservice.impl.TicketsServiceImpl;
 
 import javax.sql.DataSource;
 
@@ -45,6 +47,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public FilmService getFilmService() {
         return new FilmServiceImpl();
+    }
+
+    @Bean
+    public TicketsService getTicketsService(){
+        return new TicketsServiceImpl();
     }
 
 

@@ -1,13 +1,14 @@
 package dao.ticketsdao;
 
+import entity.Ticket;
 import exception.TicketsException;
 
 import java.util.List;
 
 public interface TicketsDAO {
-    public List getFreeSeatsByFilmId(String filmTitle);
+    public List<Ticket> getFreeSeatsByFilmId(String filmTitle);
 
-    public boolean bookingTickets(int seat) throws TicketsException;
+    public int bookingTickets(int seat);
 
-    public boolean ticketsCancellations(int seat) throws TicketsException;
+    public int ticketsCancellations(int seat);
 }
