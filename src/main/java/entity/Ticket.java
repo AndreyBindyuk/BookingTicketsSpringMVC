@@ -1,10 +1,27 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TICKETS")
 public class Ticket {
-    private String hallName;
+    @Id
+    @Column(name = "SEAT",unique = true,nullable = false)
     private int seat;
+
+    @Column(name = "HALLNAME",length = 100,nullable = false)
+    private String hallName;
+
+    @Column(name = "PRICE",length = 11,nullable = false)
     private int price;
+
+    @Column(name = "FILMTITLE",length = 100, nullable = false)
     private String filmTitle;
+
+    @Column(name = "ISBOOKED",nullable = false)
     private boolean isBooked;
 
     public Ticket() {

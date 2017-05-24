@@ -1,19 +1,43 @@
 package entity;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-public class Film {
+@Entity
+@Table(name = "FILMS")
+public class Film implements Serializable {
+    @Id
+    @Column(name = "TITLE",nullable = false,length = 100)
     private String title;
+
+    @Column(name = "DURATION",nullable = false,length = 11)
     private int duration;
+
+    @Column(name = "FILMRATING",nullable = false,length = 11)
     private double filmRating;
+
+    @Column(name = "DESCRIPTION",nullable = false,length = 100)
     private String description;
+
+    @Column(name = "YEAR",nullable = false,length = 11)
     private int year;
+
+    @Column(name = "COUNTRY",nullable = false,length = 100)
     private String country;
+
+    @Column(name = "RESTRICTION",nullable = false,length = 11)
     private int restriction;
+
+    @Column(name = "ACTORS",nullable = false,length = 100)
     private String actors;
+
+    @Column(name = "GENRES",nullable = false,length = 100)
     private String genres;
-    private String hallName;
-    private List<Ticket> tickets;
+//    private String hallName;
+//    private List<Ticket> tickets;
 
     public Film() {
     }
@@ -30,19 +54,19 @@ public class Film {
         this.genres = genres;
     }
 
-    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres, String hallName, List<Ticket> tickets) {
-        this.title = title;
-        this.duration = duration;
-        this.filmRating = filmRating;
-        this.description = description;
-        this.year = year;
-        this.country = country;
-        this.restriction = restriction;
-        this.actors = actors;
-        this.genres = genres;
-        this.hallName = hallName;
-        this.tickets = tickets;
-    }
+//    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres, String hallName, List<Ticket> tickets) {
+//        this.title = title;
+//        this.duration = duration;
+//        this.filmRating = filmRating;
+//        this.description = description;
+//        this.year = year;
+//        this.country = country;
+//        this.restriction = restriction;
+//        this.actors = actors;
+//        this.genres = genres;
+//        this.hallName = hallName;
+//        this.tickets = tickets;
+//    }
 
     public String getTitle() {
         return title;
@@ -115,22 +139,22 @@ public class Film {
     public void setGenres(String genres) {
         this.genres = genres;
     }
-
-    public String getHallName() {
-        return hallName;
-    }
-
-    public void setHallName(String hallName) {
-        this.hallName = hallName;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
+//
+//    public String getHallName() {
+//        return hallName;
+//    }
+//
+//    public void setHallName(String hallName) {
+//        this.hallName = hallName;
+//    }
+//
+//    public List<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
     @Override
     public String toString() {

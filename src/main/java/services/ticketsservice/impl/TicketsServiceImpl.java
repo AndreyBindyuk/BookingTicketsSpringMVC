@@ -31,15 +31,15 @@ public class TicketsServiceImpl implements TicketsService {
 
     @Override
     public String bookingTickets(int seatNumber) throws TicketsException {
-        if (ticketsDAO.bookingTickets(seatNumber) == 1) {
+        if (ticketsDAO.bookingTickets(seatNumber)) {
             return "ticket has been booked";
-        } else throw new TicketsException("seat number is incorrect");
+        } else throw new TicketsException("exception while retrieving data from table");
     }
 
     @Override
     public String ticketsCancellations(int seatNumber) throws TicketsException {
-        if (ticketsDAO.ticketsCancellations(seatNumber) == 1) {
+        if (ticketsDAO.ticketsCancellations(seatNumber)) {
             return "ticket has been cancelled";
-        } else throw new TicketsException("seat number is incorrect");
+        } else throw new TicketsException("exception while retrieving data from table");
     }
 }

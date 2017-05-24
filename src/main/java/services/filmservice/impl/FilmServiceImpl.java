@@ -18,7 +18,7 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public List<Film> getAllFilms() throws TicketsException {
         if (filmDAO.getAllFilms().isEmpty()) {
-            throw new TicketsException("Not closest sessions");
+            throw new TicketsException("closest sessions does not exist");
         }
         return filmDAO.getAllFilms();
     }

@@ -7,7 +7,6 @@ import dao.ticketsdao.impl.TicketsDAOImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -16,8 +15,6 @@ import services.filmservice.impl.FilmServiceImpl;
 import services.ticketsservice.TicketsService;
 import services.ticketsservice.impl.TicketsServiceImpl;
 
-import javax.sql.DataSource;
-
 @Component
 @Configuration
 @ComponentScan(basePackages = "dao")
@@ -25,23 +22,13 @@ import javax.sql.DataSource;
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
-    public DataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:file:C:\\MENTORINGAPP\\BookingTickets\\src\\db");
-        dataSource.setUsername("admin");
-        dataSource.setPassword("admin");
-        return dataSource;
-    }
-
-    @Bean
     public TicketsDAO getTicketsDAO() {
-        return new TicketsDAOImpl(getDataSource());
+        return new TicketsDAOImpl();
     }
 
     @Bean
     public FilmDAO getFilmDAO() {
-        return new FilmDAOImpl(getDataSource());
+        return new FilmDAOImpl();
     }
 
     @Bean
@@ -50,7 +37,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public TicketsService getTicketsService(){
+    public TicketsService getTicketsService() {
         return new TicketsServiceImpl();
     }
 
