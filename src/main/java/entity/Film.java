@@ -1,13 +1,12 @@
 package entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "FILMS")
+@NamedQuery(name = "get_all_films",
+        query = "select f from Film f")
 public class Film implements Serializable {
     @Id
     @Column(name = "TITLE",nullable = false,length = 100)
@@ -54,7 +53,8 @@ public class Film implements Serializable {
         this.genres = genres;
     }
 
-//    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres, String hallName, List<Ticket> tickets) {
+
+    //    public Film(String title, int duration, double filmRating, String description, int year, String country, int restriction, String actors, String genres, String hallName, List<Ticket> tickets) {
 //        this.title = title;
 //        this.duration = duration;
 //        this.filmRating = filmRating;

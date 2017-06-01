@@ -1,12 +1,11 @@
 package entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TICKETS")
+@NamedQueries({ @NamedQuery(name = "get_tickets_by_condition",
+        query = "from Ticket t where t.filmTitle=:filmTitle") })
 public class Ticket {
     @Id
     @Column(name = "SEAT",unique = true,nullable = false)

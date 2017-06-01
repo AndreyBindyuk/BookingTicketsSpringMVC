@@ -1,57 +1,49 @@
 package dao.ticketsdao.impl;
 
-import configuration.HibernateUtil;
 import dao.ticketsdao.TicketsDAO;
 import entity.Ticket;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.*;
 
+@Transactional
+@Repository
 public class TicketsDAOImpl implements TicketsDAO {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Ticket> getFreeSeatsByFilmId(String filmTitle) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            session.beginTransaction();
-            Query query = session.createQuery("from Ticket where filmTitle=" + filmTitle);
-            return query.list();
-        } finally {
-            session.close();
-        }
+        return entityManager.createNamedQuery("get_tickets_by_condition", Ticket.class)
+                .setParameter("filmTitle",filmTitle).getResultList();
     }
 
     @Override
     public boolean bookingTickets(int seatNumber) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            session.beginTransaction();
-            Ticket ticket = (Ticket) session.get(Ticket.class, seatNumber);
+            Ticket ticket = entityManager.find(Ticket.class, seatNumber);
             ticket.setBooked(true);
-            session.getTransaction().commit();
+            entityManager.flush();
             return true;
         } catch (HibernateException e) {
             return false;
-        } finally {
-            session.close();
         }
     }
 
     @Override
     public boolean ticketsCancellations(int seatNumber) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            session.beginTransaction();
-            Ticket ticket = (Ticket) session.get(Ticket.class, seatNumber);
+            Ticket ticket = entityManager.find(Ticket.class, seatNumber);
             ticket.setBooked(false);
-            session.getTransaction().commit();
+            entityManager.flush();
             return true;
         } catch (HibernateException e) {
             return false;
-        } finally {
-            session.close();
         }
 
     }
