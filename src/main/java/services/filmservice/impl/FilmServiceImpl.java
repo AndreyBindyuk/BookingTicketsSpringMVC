@@ -22,4 +22,20 @@ public class FilmServiceImpl implements FilmService {
         }
         return filmDAO.getAllFilms();
     }
+
+    @Override
+    public String addFilm(Film film) {
+        if(filmDAO.addFilm(film)){
+            return "Film has been added to cinema list";
+        } else
+        return "Film has not been added";
+    }
+
+    @Override
+    public String deleteFilm(String filmTitle) {
+        if(filmDAO.deleteFilm(filmTitle)){
+            return filmTitle+" has been deleted";
+        }else
+            return filmTitle+" has not been deleted";
+    }
 }
