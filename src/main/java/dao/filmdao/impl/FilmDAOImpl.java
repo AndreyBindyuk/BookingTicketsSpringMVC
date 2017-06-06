@@ -27,20 +27,8 @@ public class FilmDAOImpl implements FilmDAO {
 
     @Override
     public boolean addFilm(Film film) {
-        String sql = "insert into Films (title,duration,filmRating,description,year,country,restriction,actors,genres)" +
-                "VALUES (?,?,?,?,?,?,?,?,?)";
         try {
-            Query query = entityManager.createNativeQuery(sql);
-            query.setParameter(1, film.getTitle());
-            query.setParameter(2, film.getDuration());
-            query.setParameter(3, film.getFilmRating());
-            query.setParameter(4, film.getDescription());
-            query.setParameter(5, film.getYear());
-            query.setParameter(6, film.getCountry());
-            query.setParameter(7, film.getRestriction());
-            query.setParameter(8, film.getActors());
-            query.setParameter(9, film.getGenres());
-            query.executeUpdate();
+            entityManager.persist(film);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +41,6 @@ public class FilmDAOImpl implements FilmDAO {
         try {
             Film film = entityManager.find(Film.class, filmTitle);
             entityManager.remove(film);
-            entityManager.flush();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

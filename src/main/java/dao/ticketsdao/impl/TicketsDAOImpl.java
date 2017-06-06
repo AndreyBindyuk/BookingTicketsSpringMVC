@@ -28,7 +28,6 @@ public class TicketsDAOImpl implements TicketsDAO {
         try {
             Ticket ticket = entityManager.find(Ticket.class, seatNumber);
             ticket.setBooked(true);
-            entityManager.flush();
             return true;
         } catch (HibernateException e) {
             return false;
@@ -40,7 +39,6 @@ public class TicketsDAOImpl implements TicketsDAO {
         try {
             Ticket ticket = entityManager.find(Ticket.class, seatNumber);
             ticket.setBooked(false);
-            entityManager.flush();
             return true;
         } catch (HibernateException e) {
             return false;
