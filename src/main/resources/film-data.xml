@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <films TITLE="Harry Potter" DURATION="100" FILMRATING="4" DESCRIPTION="for child" YEAR="2007" COUNTRY="UK" RESTRICTION="12" ACTORS="Daniel Radcliffe, Rupert Grint, Emma Watson" GENRES="Fantasy"/>
-    <!--<FILMS TITLE="Harry Potter7" DURATION="130" FILMRATING="5" DESCRIPTION="for child" YEAR="2009" COUNTRY="UK" RESTRICTION="14" ACTORS="Daniel Radcliffe, Rupert Grint, Emma Watson" GENRES="Fantasy"/>-->
-    <!--<FILMS TITLE="Harry Potter8" DURATION="130" FILMRATING="5" DESCRIPTION="for child" YEAR="2009" COUNTRY="UK" RESTRICTION="14" ACTORS="Daniel Radcliffe, Rupert Grint, Emma Watson" GENRES="Fantasy"/>-->
-</dataset>
+    <tickets SEAT="10" HALLNAME="blue" PRICE="1000" FILMTITLE="Harry Potter" ISBOOKED="false"/>
+    </dataset>
