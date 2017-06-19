@@ -1,3 +1,6 @@
+package db.tests;
+
+import db.tests.config.DBUnitConfig;
 import org.dbunit.Assertion;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;

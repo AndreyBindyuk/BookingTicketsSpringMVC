@@ -1,3 +1,6 @@
+package db.tests;
+
+import db.tests.config.DBUnitConfig;
 import entity.Film;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;

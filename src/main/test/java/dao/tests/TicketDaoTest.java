@@ -1,4 +1,7 @@
+package dao.tests;
+
 import dao.ticketsdao.TicketsDAO;
+import entity.Ticket;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,15 +18,18 @@ public class TicketDaoTest {
     private
     TicketsDAO ticketsDAO;
 
+    @Mock
+    private Ticket ticket;
+
     @Test
     public void testShouldBookTicket(){
-        when(ticketsDAO.bookingTickets(1)).thenReturn(true);
-        assertEquals(true,ticketsDAO.bookingTickets(1));
+        when(ticketsDAO.bookingTickets(ticket.getSeat())).thenReturn(true);
+        assertEquals(true,ticketsDAO.bookingTickets(ticket.getSeat()));
     }
 
     @Test
     public void testShouldMakeTicketCancellation() {
-        when(ticketsDAO.ticketsCancellations(1)).thenReturn(true);
-        assertEquals(true,ticketsDAO.ticketsCancellations(1));
+        when(ticketsDAO.ticketsCancellations(ticket.getSeat())).thenReturn(true);
+        assertEquals(true,ticketsDAO.ticketsCancellations(ticket.getSeat()));
     }
 }

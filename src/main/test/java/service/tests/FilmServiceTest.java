@@ -1,3 +1,5 @@
+package service.tests;
+
 import entity.Film;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,13 +12,14 @@ import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FilmServiceTest {
+
     @Mock
-    private
-    FilmServiceImpl filmService;
+    private FilmServiceImpl filmService;
+    @Mock
+    private Film film;
 
     @Test
     public void testShouldAddFilm(){
-        Film film = new Film();
         when(filmService.addFilm(film)).thenReturn("Film has been added to cinema list");
         assertEquals("Film has been added to cinema list",filmService.addFilm(film));
     }

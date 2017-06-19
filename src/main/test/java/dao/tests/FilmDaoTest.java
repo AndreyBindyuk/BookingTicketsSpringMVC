@@ -1,7 +1,11 @@
+package dao.tests;
+
 import dao.filmdao.FilmDAO;
+import dao.filmdao.impl.FilmDAOImpl;
 import entity.Film;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -12,12 +16,13 @@ import static org.mockito.Mockito.when;
 public class FilmDaoTest {
 
     @Mock
-    private FilmDAO filmDAO;
+    private Film film;
+    @Mock
+    private FilmDAOImpl filmDAO;
 
 
     @Test
     public void testShouldAddFilm(){
-        Film film = new Film();
         when(filmDAO.addFilm(film)).thenReturn(true);
         assertEquals(true,filmDAO.addFilm(film));
     }

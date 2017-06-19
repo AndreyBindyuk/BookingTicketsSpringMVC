@@ -1,3 +1,5 @@
+package db.tests.config;
+
 import org.dbunit.DBTestCase;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
